@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('crows/', views.crows_index, name="index")
+    path('crows/', views.crows_index, name="index"),
+    path('cats/<int:crow_id>/', views.crows_detail, name='detail')
 ]
 

@@ -1,9 +1,5 @@
 from django.shortcuts import render
-
-crows = [
-  {'name': 'Bob', 'breed': 'hooded', 'description': 'black and white crow with what looks like a hood', 'age': 2},
-  {'name': 'Bucket', 'breed': 'american crow', 'description': 'It looks much like other all-black corvids. They are very intelligent, and adaptable to human environments.', 'age': 0},
-]
+from .models import Crow
 
 # Create your views here.
 
@@ -16,6 +12,9 @@ def about(request):
   return render(request, 'about.html')
 
 def crows_index(request):
-  return render(request, 'crows/index.html', {
-    'crows': crows,
-  })
+  crows = Crow.objects.all()
+  return render(request, 'crows/index.html', {'crows': crows })
+
+def crows_detail(request, crow_id):
+  crow = Crow.objects.get(id=crow_id)
+  return render(request, 'crows/detail.html', { 'crow': crow })

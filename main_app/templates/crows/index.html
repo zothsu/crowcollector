@@ -5,17 +5,19 @@
 
 {% for crow in crows %}
   <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ crow.name }}</span>
-      <p>Breed: {{ crow.breed }}</p>
-      <p>Description: {{ crow.description }}</p>
-      {% if crow.age > 0 %}
+    <a href="{% url 'detail' crow.id %}">
+      <div class="card-content">
+        <span class="card-title">{{ crow.name }}</span>
+        <p>Breed: {{ crow.breed }}</p>
+        <p>Description: {{ crow.description|linebreaks}}</p>
+        {% if crow.age > 0 %}
         <p>Age: {{ crow.age }}</p>
-      {% else %}
+        {% else %}
         <p>Age: Fledgling</p>
-      {% endif %}
+        {% endif %}
+      </div>
+    </a>
     </div>
-  </div>
 {% endfor %}
 
 {% endblock %}
