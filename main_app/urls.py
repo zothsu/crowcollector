@@ -22,6 +22,9 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('crows/', views.crows_index, name="index"),
-    path('cats/<int:crow_id>/', views.crows_detail, name='detail')
+    path('crows/<int:crow_id>/', views.crows_detail, name='detail'),
+    path('crows/create/', views.CrowCreate.as_view(), name='crows_create'),
+    path('crows/<int:pk>/update', views.CrowUpdate.as_view(), name='crows_update'),
+    path('crows/<int:pk>/delete', views.CrowDelete.as_view(), name='crows_delete'),
 ]
 
