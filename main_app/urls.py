@@ -26,5 +26,6 @@ urlpatterns = [
     path('crows/create/', views.CrowCreate.as_view(), name='crows_create'),
     path('crows/<int:pk>/update', views.CrowUpdate.as_view(), name='crows_update'),
     path('crows/<int:pk>/delete', views.CrowDelete.as_view(), name='crows_delete'),
+    path('crows/<int:crow_id>/add_feeding/', views.add_feeding, name='add_feeding'),
 ]
 

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Crow
+from .forms import FeedingForm
 
 # Create your views here.
 
@@ -18,7 +19,19 @@ def crows_index(request):
 
 def crows_detail(request, crow_id):
   crow = Crow.objects.get(id=crow_id)
-  return render(request, 'crows/detail.html', { 'crow': crow })
+  feeding_form = FeedingForm()
+  return render(request, 'crows/detail.html', { 'crow': crow, 'feeding_form': feeding_form })
+
+def add_feeding(request, crow_id):
+  form = FeedingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the crow_id assigned
+    new_feeding = form.save(commit=False)
+    new_feeding.crow_id = crow_id
+    new_feeding.save()
+  return redirect('detail', crow_id=crow_id)
 
 class CrowCreate (CreateView):
   model = Crow
