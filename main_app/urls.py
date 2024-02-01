@@ -27,5 +27,9 @@ urlpatterns = [
     path('crows/<int:pk>/update', views.CrowUpdate.as_view(), name='crows_update'),
     path('crows/<int:pk>/delete', views.CrowDelete.as_view(), name='crows_delete'),
     path('crows/<int:crow_id>/add_feeding/', views.add_feeding, name='add_feeding'),
+    path('crows/<int:crow_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
+
+    path('toys/', views.ToyList.as_view(), name='toys_index'),
+    path('toys/create/', views.ToyCreate.as_view(), name='toys_create'),
 ]
 
